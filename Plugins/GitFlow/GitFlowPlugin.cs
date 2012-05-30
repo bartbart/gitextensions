@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using GitUIPluginInterfaces;
 
 namespace GitFlow
@@ -22,6 +23,7 @@ namespace GitFlow
 
         public bool Execute(GitUIBaseEventArgs gitUiCommands)
         {
+            new GitFlowForm(gitUiCommands).ShowDialog(gitUiCommands.OwnerForm as IWin32Window);
             return true;
         }
     }
