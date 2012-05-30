@@ -38,7 +38,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GitFlowForm";
-            this.Text = "GitFlowForm";
+            this.Text = "Git flow";
             this.ResumeLayout(false);
 
         }
