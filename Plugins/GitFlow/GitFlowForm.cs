@@ -22,5 +22,10 @@ namespace GitFlow
 
             InitializeComponent();
         }
+
+        private void OnButtonInitClicked(object sender, EventArgs e)
+        {
+            string result = gitUiCommands.GitCommands.RunGit("rev-parse --quiet --verify HEAD");
+        }
     }
 }
