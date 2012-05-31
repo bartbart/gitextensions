@@ -28,69 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonInit = new System.Windows.Forms.Button();
+            this.buttonFeature = new System.Windows.Forms.Button();
+            this.buttonRelease = new System.Windows.Forms.Button();
+            this.buttonHotfix = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonInit
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonInit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(13, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 66);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Init";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonInit.Location = new System.Drawing.Point(13, 13);
+            this.buttonInit.Name = "buttonInit";
+            this.buttonInit.Size = new System.Drawing.Size(100, 66);
+            this.buttonInit.TabIndex = 0;
+            this.buttonInit.Text = "Init";
+            this.buttonInit.UseVisualStyleBackColor = true;
+            this.buttonInit.Click += new System.EventHandler(this.OnButtonInitClicked);
             // 
-            // button2
+            // buttonFeature
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonFeature.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(12, 86);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 66);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Feature";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonFeature.Location = new System.Drawing.Point(12, 86);
+            this.buttonFeature.Name = "buttonFeature";
+            this.buttonFeature.Size = new System.Drawing.Size(100, 66);
+            this.buttonFeature.TabIndex = 1;
+            this.buttonFeature.Text = "Feature";
+            this.buttonFeature.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonRelease
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonRelease.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(119, 13);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 66);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Release";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonRelease.Location = new System.Drawing.Point(119, 13);
+            this.buttonRelease.Name = "buttonRelease";
+            this.buttonRelease.Size = new System.Drawing.Size(100, 66);
+            this.buttonRelease.TabIndex = 2;
+            this.buttonRelease.Text = "Release";
+            this.buttonRelease.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonHotfix
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonHotfix.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(118, 85);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(101, 67);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Hotfix";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonHotfix.Location = new System.Drawing.Point(118, 85);
+            this.buttonHotfix.Name = "buttonHotfix";
+            this.buttonHotfix.Size = new System.Drawing.Size(101, 67);
+            this.buttonHotfix.TabIndex = 3;
+            this.buttonHotfix.Text = "Hotfix";
+            this.buttonHotfix.UseVisualStyleBackColor = true;
             // 
             // GitFlowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 164);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonHotfix);
+            this.Controls.Add(this.buttonRelease);
+            this.Controls.Add(this.buttonFeature);
+            this.Controls.Add(this.buttonInit);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(400, 200);
             this.MinimizeBox = false;
@@ -103,9 +104,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonInit;
+        private System.Windows.Forms.Button buttonFeature;
+        private System.Windows.Forms.Button buttonRelease;
+        private System.Windows.Forms.Button buttonHotfix;
     }
 }
