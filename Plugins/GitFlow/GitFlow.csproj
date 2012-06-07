@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GitFlowCommands\GitFlowCommander.cs" />
+    <Compile Include="GitFlowCommands\ICommand.cs" />
+    <Compile Include="GitFlowCommands\Init.cs" />
     <Compile Include="GitFlowForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -48,6 +51,12 @@
     </Compile>
     <Compile Include="GitFlowPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UiControls\GitFlowInitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UiControls\GitFlowInitForm.Designer.cs">
+      <DependentUpon>GitFlowInitForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GitUIPluginInterfaces\GitUIPluginInterfaces.csproj">
@@ -58,6 +67,9 @@
   <ItemGroup>
     <EmbeddedResource Include="GitFlowForm.resx">
       <DependentUpon>GitFlowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UiControls\GitFlowInitForm.resx">
+      <DependentUpon>GitFlowInitForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
