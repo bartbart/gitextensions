@@ -20,7 +20,7 @@ namespace GitFlow
         {
             this.gitUiCommands = gitUiCommands;
 
-            this.commander = new GitFlowCommander(gitUiCommands.GitCommands);
+            this.commander = new GitFlowCommander(gitUiCommands.GitModule);
 
             InitializeComponent();
         }

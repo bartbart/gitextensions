@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using GitUIPluginInterfaces;
 
 namespace GitFlow.GitFlowCommands
 {
     class GitFlowCommander
     {
-        private IGitCommands iGitCommands;
+        private IGitModule iGitCommands;
 
-        internal GitFlowCommander(IGitCommands iGitCommands)
+        internal GitFlowCommander(IGitModule iGitCommands)
         {
             this.iGitCommands = iGitCommands;
         }

@@ -7,21 +7,21 @@ using GitUIPluginInterfaces;
 
 namespace GitFlow
 {
-    public class GitFlowPlugin : IGitPluginForRepository
+    public class GitFlowPlugin : GitPluginBase, IGitPluginForRepository
     {
-        public string Description
+        public override string Description
         {
             get { return "Git flow"; }
         }
 
         public IGitPluginSettingsContainer Settings { get; set; }
 
-        public void Register(IGitUICommands gitUiCommands)
+        public override void Register(IGitUICommands gitUiCommands)
         {
             //Settings.AddSetting("Find large files bigger than (Mb)", "1");
         }
 
-        public bool Execute(GitUIBaseEventArgs gitUiCommands)
+        public override bool Execute(GitUIBaseEventArgs gitUiCommands)
         {
             new GitFlowForm(gitUiCommands).ShowDialog(gitUiCommands.OwnerForm as IWin32Window);
             return true;
