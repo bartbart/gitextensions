@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using GitUIPluginInterfaces;
 
 namespace GitFlow
@@ -14,7 +10,7 @@ namespace GitFlow
             get { return "Git flow"; }
         }
 
-        public IGitPluginSettingsContainer Settings { get; set; }
+        public new IGitPluginSettingsContainer Settings { get; set; }
 
         public override void Register(IGitUICommands gitUiCommands)
         {

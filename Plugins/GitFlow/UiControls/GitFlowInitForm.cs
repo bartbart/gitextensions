@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using GitFlow.GitFlowCommands;
 
@@ -12,11 +6,11 @@ namespace GitFlow.UiControls
 {
     internal partial class GitFlowInitForm : Form
     {
-        private readonly GitFlowCommander commander;
+        private readonly GitFlowCommander _commander;
 
         public GitFlowInitForm(GitFlowCommander commander)
         {
-            this.commander = commander;
+            _commander = commander;
 
             InitializeComponent();
         }
@@ -41,15 +35,15 @@ namespace GitFlow.UiControls
 
         private void RunGitInitCommand()
         {
-            if (!commander.IsGitRepo)
+            if (!_commander.IsGitRepo)
             {
-                commander.ExecuteGitInit();
+                _commander.ExecuteGitInit();
             }
             else
             {
-                if (!commander.IsGitRepoHeadless)
+                if (!_commander.IsGitRepoHeadless)
                 {
-                    commander.RequireCleanWorkingTree();
+                    _commander.RequireCleanWorkingTree();
                 }
             }
         }
