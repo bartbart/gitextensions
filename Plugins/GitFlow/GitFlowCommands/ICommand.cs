@@ -1,6 +1,6 @@
 ﻿namespace GitFlow.GitFlowCommands
 {
-    interface ICommand
+    public interface ICommand
     {
         void Execute();
     }

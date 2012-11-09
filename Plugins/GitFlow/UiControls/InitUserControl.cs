@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using GitFlow.GitFlowCommands;
 
 namespace GitFlow.UiControls
 {
@@ -19,6 +21,11 @@ namespace GitFlow.UiControls
             get { return checkBoxDefaults.Checked && checkBoxForce.Checked; }
         }
 
+        public List<ICommand> Commands
+        {
+            get{ return new List<ICommand>(); }
+        }
+
         public UserControl UserControl
         {
             get { return this; }
@@ -26,12 +33,7 @@ namespace GitFlow.UiControls
 
         public event UiChangedHandler OnUiChanged;
 
-        private void CheckBoxDefaultsCheckedChanged(object sender, System.EventArgs e)
-        {
-            OnUiChanged(this);
-        }
-
-        private void CheckBoxForceCheckedChanged(object sender, System.EventArgs e)
+        private void NotifyUiChanged(object sender, System.EventArgs e)
         {
             OnUiChanged(this);
         }

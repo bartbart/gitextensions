@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using GitFlow.GitFlowCommands;
 
 namespace GitFlow.UiControls
 {
@@ -9,6 +11,8 @@ namespace GitFlow.UiControls
         string Title { get; }
 
         bool CanExecute { get; }
+
+        List<ICommand> Commands { get; }
 
         UserControl UserControl { get; }
 

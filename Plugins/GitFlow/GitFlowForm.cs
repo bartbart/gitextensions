@@ -46,5 +46,18 @@ namespace GitFlow
         {
             SetAction(new InitUserControl());
         }
+
+        private void ButtonExecuteClick(object sender, EventArgs e)
+        {
+            MessageBox.Show("Actions: " + _actionUserControl.Commands.Count);
+        }
+
+        private void GitFlowFormKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
     }
 }
