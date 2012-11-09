@@ -10,6 +10,8 @@ namespace GitFlow
     {
         private readonly GitFlowCommander _commander;
 
+        private IActionUserControl _actionUserControl;
+
         public GitFlowForm(GitUIBaseEventArgs gitUiCommands)
         {
             _commander = new GitFlowCommander(gitUiCommands.GitModule);
@@ -17,17 +19,32 @@ namespace GitFlow
             InitializeComponent();
         }
 
+        private void SetAction(IActionUserControl action)
+        {
+            if (_actionUserControl != null)
+            {
+                _actionUserControl.OnUiChanged -= OnUiChanged;
+            }
+
+            _actionUserControl = action;
+
+            groupBoxAction.Text = _actionUserControl.Title;
+
+            panelAction.Controls.Clear();
+            panelAction.Controls.Add(_actionUserControl.UserControl);
+
+            _actionUserControl.OnUiChanged += OnUiChanged;
+            OnUiChanged(_actionUserControl);
+        }
+
+        void OnUiChanged(IActionUserControl owner)
+        {
+            buttonExecute.Enabled = owner.CanExecute;
+        }
+
         private void OnButtonInitClicked(object sender, EventArgs e)
         {
-            //UiControls.GitFlowInitForm initForm = new UiControls.GitFlowInitForm(_commander);
-            //initForm.ShowDialog();
-
-            InitUserControl initUc = new InitUserControl();
-
-            groupBoxAction.Text = "Init";
-            panelAction.Controls.Clear();
-            panelAction.Controls.Add(initUc);
-
+            SetAction(new InitUserControl());
         }
     }
 }

@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="GitFlowPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UiControls\IActionUserControl.cs" />
     <Compile Include="UiControls\InitUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

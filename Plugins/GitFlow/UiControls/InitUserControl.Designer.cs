@@ -41,6 +41,7 @@
             this.checkBoxForce.TabIndex = 4;
             this.checkBoxForce.Text = "Forced";
             this.checkBoxForce.UseVisualStyleBackColor = true;
+            this.checkBoxForce.CheckedChanged += new System.EventHandler(this.CheckBoxForceCheckedChanged);
             // 
             // checkBoxDefaults
             // 
@@ -53,6 +54,7 @@
             this.checkBoxDefaults.TabIndex = 3;
             this.checkBoxDefaults.Text = "Using defaults";
             this.checkBoxDefaults.UseVisualStyleBackColor = true;
+            this.checkBoxDefaults.CheckedChanged += new System.EventHandler(this.CheckBoxDefaultsCheckedChanged);
             // 
             // InitUserControl
             // 
