@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using GitFlow.UiControls;
 using GitUIPluginInterfaces;
 using GitFlow.GitFlowCommands;
 
@@ -18,9 +19,15 @@ namespace GitFlow
 
         private void OnButtonInitClicked(object sender, EventArgs e)
         {
-            UiControls.GitFlowInitForm initForm = new UiControls.GitFlowInitForm(_commander);
-            initForm.ShowDialog();
-            //string result = gitUiCommands.GitCommands.RunGit("rev-parse --quiet --verify HEAD");
+            //UiControls.GitFlowInitForm initForm = new UiControls.GitFlowInitForm(_commander);
+            //initForm.ShowDialog();
+
+            InitUserControl initUc = new InitUserControl();
+
+            groupBoxAction.Text = "Init";
+            panelAction.Controls.Clear();
+            panelAction.Controls.Add(initUc);
+
         }
     }
 }
