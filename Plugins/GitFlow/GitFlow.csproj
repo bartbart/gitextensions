@@ -42,6 +42,10 @@
   <ItemGroup>
     <Compile Include="Commands\GitFlowCommander.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\IGit.cs" />
+    <Compile Include="Commands\ILogger.cs" />
+    <Compile Include="Commands\RepoIsHeadless.cs" />
+    <Compile Include="Git.cs" />
     <Compile Include="GitFlowForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -49,6 +53,7 @@
       <DependentUpon>GitFlowForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GitFlowPlugin.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\Builder\Builder.cs" />
     <Compile Include="Commands\Builder\InitInput.cs" />

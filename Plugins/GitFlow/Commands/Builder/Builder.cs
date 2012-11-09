@@ -6,7 +6,10 @@ namespace GitFlow.Commands.Builder
     {
         public List<ICommand> From(InitInput input)
         {
-            return new List<ICommand>();
+            return new List<ICommand>()
+                       {
+                           new RepoIsHeadless(),
+                       };
         }
     }
 }

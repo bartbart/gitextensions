@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using GitFlow.Commands;
 using GitFlow.UiControls;
@@ -8,13 +9,13 @@ namespace GitFlow
 {
     public partial class GitFlowForm : Form
     {
-        private readonly GitFlowCommander _commander;
+        private IGitModule _gitModule;
 
         private IActionUserControl _actionUserControl;
 
         public GitFlowForm(GitUIBaseEventArgs gitUiCommands)
         {
-            _commander = new GitFlowCommander(gitUiCommands.GitModule);
+            _gitModule = gitUiCommands.GitModule;
 
             InitializeComponent();
         }
@@ -50,6 +51,17 @@ namespace GitFlow
         private void ButtonExecuteClick(object sender, EventArgs e)
         {
             textBoxLogging.Clear();
+
+            List<ICommand> commands = _actionUserControl.Commands;
+            foreach (ICommand command in commands)
+            {
+                command.Execute(new Git(_gitModule), new Logger(LogLine));
+            }
+        }
+
+        private void LogLine(string arguments)
+        {
+            textBoxLogging.Text += arguments + Environment.NewLine;
         }
 
         private void GitFlowFormKeyUp(object sender, KeyEventArgs e)

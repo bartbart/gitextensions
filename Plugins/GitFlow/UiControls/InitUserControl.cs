@@ -19,7 +19,7 @@ namespace GitFlow.UiControls
 
         public bool CanExecute
         {
-            get { return checkBoxDefaults.Checked && checkBoxForce.Checked; }
+            get { return true; }
         }
 
         public List<ICommand> Commands
