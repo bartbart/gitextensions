@@ -32,8 +32,6 @@ namespace GitCommands
         }
 
         private string _workingdir;
-        private GitModule _superprojectModule;
-        private string _submoduleName;
 
         public string WorkingDir
         {
@@ -43,16 +41,25 @@ namespace GitCommands
             }
             private set
             {
+                _superprojectInit = false;
                 _workingdir = FindGitWorkingDir(value);
-                string superprojectDir = FindGitSuperprojectPath(out _submoduleName);
-                _superprojectModule = superprojectDir == null ? null : new GitModule(superprojectDir);
             }
         }
+
+        private bool _superprojectInit;
+        private GitModule _superprojectModule;
+        private string _submoduleName;
 
         public string SubmoduleName
         {
             get
             {
+                if (!_superprojectInit)
+                {
+                    string superprojectDir = FindGitSuperprojectPath(out _submoduleName);
+                    _superprojectModule = superprojectDir == null ? null : new GitModule(superprojectDir);
+                    _superprojectInit = true;
+                }
                 return _submoduleName;
             }
         }
@@ -61,8 +68,28 @@ namespace GitCommands
         {
             get
             {
+                if (!_superprojectInit)
+                {
+                    string superprojectDir = FindGitSuperprojectPath(out _submoduleName);
+                    _superprojectModule = superprojectDir == null ? null : new GitModule(superprojectDir);
+                    _superprojectInit = true;
+                }
                 return _superprojectModule;
             }
+        }
+
+        public GitModule FindTopProjectModule()
+        {
+            GitModule module = SuperprojectModule;
+            if (module == null)
+                return null;
+            do
+            {
+                if (module.SuperprojectModule == null)
+                    return module;
+                module = module.SuperprojectModule;
+            } while (module != null);
+            return module;
         }
 
         //encoding for files paths
@@ -282,7 +309,7 @@ namespace GitCommands
                     var submoduleConfigFile = submodule.GetSubmoduleConfigFile();
                     var subsubmodules = submoduleConfigFile.GetConfigSections().Select(configSection => configSection.GetPathValue("path").Trim()).ToList();
                     for (int j = 0; j < subsubmodules.Count; j++)
-                        subsubmodules[j] = Path.Combine(submodules[i], subsubmodules[j]);
+                        subsubmodules[j] = submodules[i] + '/' + subsubmodules[j];
                     submodules.InsertRange(i + 1, subsubmodules);
                     i += subsubmodules.Count;
                 }
@@ -1054,10 +1081,10 @@ namespace GitCommands
 
         public string GetSuperprojectCurrentCheckout()
         {
-            if (_superprojectModule == null)
+            if (SuperprojectModule == null)
                 return "";
 
-            var lines = _superprojectModule.RunGitCmd("submodule status --cached " + _submoduleName).Split('\n');
+            var lines = SuperprojectModule.RunGitCmd("submodule status --cached " + _submoduleName).Split('\n');
 
             if (lines.Length == 0)
                 return "";
@@ -1103,6 +1130,16 @@ namespace GitCommands
         public ConfigFile GetSubmoduleConfigFile()
         {
             return new ConfigFile(_workingdir + ".gitmodules", true);
+        }
+
+        public string GetCurrentSubmoduleLocalPath()
+        {
+            if (SuperprojectModule == null)
+                return null;
+            string submodulePath = WorkingDir.Substring(SuperprojectModule.WorkingDir.Length);
+            submodulePath = submodulePath.Replace(Settings.PathSeparator, Settings.PathSeparatorWrong).TrimEnd(
+                    Settings.PathSeparatorWrong);
+            return submodulePath;
         }
 
         public string GetSubmoduleNameByPath(string localPath)
@@ -2138,13 +2175,7 @@ namespace GitCommands
                     if (item.SubmoduleStatus.Commit != item.SubmoduleStatus.OldCommit)
                     {
                         var submodule = item.SubmoduleStatus.GetSubmodule(this);
-                        if (submodule != null)
-                        {
-                            var commitData = item.SubmoduleStatus.GetCommitData(submodule);
-                            var oldCommitData = item.SubmoduleStatus.GetOldCommitData(submodule);
-                            if (commitData != null && oldCommitData != null)
-                                item.SubmoduleStatus.IsCommitNewer = commitData.CommitDate >= oldCommitData.CommitDate;
-                        }
+                        item.SubmoduleStatus.CheckIsCommitNewer(submodule);
                     }
                 }
             return status;
@@ -2754,6 +2785,11 @@ namespace GitCommands
             int exitCode = 0;
             string[] resultStrings = RunCmd(Settings.GitCommand, revparseCommand, out exitCode).Split('\n');
             return exitCode == 0 ? resultStrings[0] : "";
+        }
+
+        public string GetMergeBase(string a, string b)
+        {
+            return RunGitCmd("merge-base " + a + " " + b).TrimEnd();
         }
 
         public static string WorkingDirGitDir(string repositoryPath)
