@@ -44,7 +44,7 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\IGit.cs" />
     <Compile Include="Commands\ILogger.cs" />
-    <Compile Include="Commands\RepoIsHeadless.cs" />
+    <Compile Include="Commands\Impl\RepoIsHeadless.cs" />
     <Compile Include="Git.cs" />
     <Compile Include="GitFlowForm.cs">
       <SubType>Form</SubType>
