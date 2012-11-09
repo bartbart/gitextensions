@@ -1,7 +1,7 @@
 ﻿using System;
 using GitUIPluginInterfaces;
 
-namespace GitFlow.GitFlowCommands
+namespace GitFlow.Commands
 {
     class GitFlowCommander
     {

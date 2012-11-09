@@ -40,9 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GitFlowCommands\GitFlowCommander.cs" />
-    <Compile Include="GitFlowCommands\ICommand.cs" />
-    <Compile Include="GitFlowCommands\Init.cs" />
+    <Compile Include="Commands\GitFlowCommander.cs" />
+    <Compile Include="Commands\ICommand.cs" />
     <Compile Include="GitFlowForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -51,6 +50,8 @@
     </Compile>
     <Compile Include="GitFlowPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Commands\Builder\Builder.cs" />
+    <Compile Include="Commands\Builder\InitInput.cs" />
     <Compile Include="UiControls\IActionUserControl.cs" />
     <Compile Include="UiControls\InitUserControl.cs">
       <SubType>UserControl</SubType>

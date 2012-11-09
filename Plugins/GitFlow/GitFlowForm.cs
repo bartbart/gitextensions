@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using GitFlow.Commands;
 using GitFlow.UiControls;
 using GitUIPluginInterfaces;
-using GitFlow.GitFlowCommands;
 
 namespace GitFlow
 {
@@ -49,7 +49,7 @@ namespace GitFlow
 
         private void ButtonExecuteClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Actions: " + _actionUserControl.Commands.Count);
+            textBoxLogging.Clear();
         }
 
         private void GitFlowFormKeyUp(object sender, KeyEventArgs e)

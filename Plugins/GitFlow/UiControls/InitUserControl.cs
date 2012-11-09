@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
-using GitFlow.GitFlowCommands;
+using GitFlow.Commands;
+using GitFlow.Commands.Builder;
 
 namespace GitFlow.UiControls
 {
@@ -23,7 +24,16 @@ namespace GitFlow.UiControls
 
         public List<ICommand> Commands
         {
-            get{ return new List<ICommand>(); }
+            get
+            {
+                Builder builder = new Builder();
+
+                InitInput input = new InitInput();
+                input.UseDefaults = checkBoxDefaults.Checked;
+                input.Force = checkBoxForce.Checked;
+
+                return builder.From(input);
+            }
         }
 
         public UserControl UserControl

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
-using GitFlow.GitFlowCommands;
+using GitFlow.Commands;
 
 namespace GitFlow.UiControls
 {
