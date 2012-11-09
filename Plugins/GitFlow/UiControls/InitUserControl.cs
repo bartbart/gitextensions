@@ -22,7 +22,7 @@ namespace GitFlow.UiControls
             get { return true; }
         }
 
-        public List<ICommand> Commands
+        public Command Command
         {
             get
             {

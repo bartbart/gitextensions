@@ -5,12 +5,16 @@ namespace GitFlow.Commands.Builder
 {
     public class Builder 
     {
-        public List<ICommand> From(InitInput input)
+        public Command From(InitInput input)
         {
-            return new List<ICommand>()
-                       {
-                           new RepoIsHeadless(),
-                       };
+            return new If(
+                new IsGitArchive(),
+                new NotFailed(
+                    new Log("We can continue."),
+                    new Or(
+                        new IsRepoHeadless(),
+                        new Required( new IsCleanWorkingTree() ) ) ),
+                new GitInit());
         }
     }
 }

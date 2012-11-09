@@ -40,11 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\GitFlowCommander.cs" />
-    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\CheckResult.cs" />
+    <Compile Include="Commands\Check.cs" />
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\IGit.cs" />
     <Compile Include="Commands\ILogger.cs" />
-    <Compile Include="Commands\Impl\RepoIsHeadless.cs" />
+    <Compile Include="Commands\Impl\Log.cs" />
+    <Compile Include="Commands\Impl\Required.cs" />
+    <Compile Include="Commands\Impl\NotFailed.cs" />
+    <Compile Include="Commands\Impl\Or.cs" />
+    <Compile Include="Commands\Impl\IsCleanWorkingTree.cs" />
+    <Compile Include="Commands\Impl\GitInit.cs" />
+    <Compile Include="Commands\Impl\If.cs" />
+    <Compile Include="Commands\Impl\IsGitArchive.cs" />
+    <Compile Include="Commands\Impl\IsRepoHeadless.cs" />
     <Compile Include="Git.cs" />
     <Compile Include="GitFlowForm.cs">
       <SubType>Form</SubType>

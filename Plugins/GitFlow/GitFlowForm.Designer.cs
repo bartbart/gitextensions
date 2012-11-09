@@ -119,7 +119,7 @@
             this.buttonExecute.Name = "buttonExecute";
             this.buttonExecute.Size = new System.Drawing.Size(100, 25);
             this.buttonExecute.TabIndex = 0;
-            this.buttonExecute.Text = "Execute";
+            this.buttonExecute.Text = "RunCommand";
             this.buttonExecute.UseVisualStyleBackColor = true;
             this.buttonExecute.Click += new System.EventHandler(this.ButtonExecuteClick);
             // 
@@ -198,11 +198,14 @@
             this.textBoxLogging.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLogging.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLogging.Location = new System.Drawing.Point(6, 19);
             this.textBoxLogging.Multiline = true;
             this.textBoxLogging.Name = "textBoxLogging";
+            this.textBoxLogging.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxLogging.Size = new System.Drawing.Size(550, 200);
             this.textBoxLogging.TabIndex = 0;
+            this.textBoxLogging.WordWrap = false;
             // 
             // GitFlowForm
             // 

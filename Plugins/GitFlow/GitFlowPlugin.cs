@@ -3,7 +3,7 @@ using GitUIPluginInterfaces;
 
 namespace GitFlow
 {
-    public class GitFlowPlugin : GitPluginBase, IGitPluginForRepository
+    public class GitFlowPlugin : GitPluginBase
     {
         public override string Description
         {
@@ -11,11 +11,6 @@ namespace GitFlow
         }
 
         public new IGitPluginSettingsContainer Settings { get; set; }
-
-        public override void Register(IGitUICommands gitUiCommands)
-        {
-            //Settings.AddSetting("Find large files bigger than (Mb)", "1");
-        }
 
         public override bool Execute(GitUIBaseEventArgs gitUiCommands)
         {

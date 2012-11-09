@@ -52,10 +52,9 @@ namespace GitFlow
         {
             textBoxLogging.Clear();
 
-            List<ICommand> commands = _actionUserControl.Commands;
-            foreach (ICommand command in commands)
+            if (!_actionUserControl.Command.Execute(new Git(_gitModule), new Logger(LogLine)))
             {
-                command.Execute(new Git(_gitModule), new Logger(LogLine));
+                textBoxLogging.Text += Environment.NewLine + "!!! FAILED !!!" + Environment.NewLine;
             }
         }
 

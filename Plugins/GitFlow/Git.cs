@@ -12,9 +12,12 @@ namespace GitFlow
             _gitModule = gitModule;
         }
 
-        public string Execute(string arguments)
+        public GitResult Execute(string arguments)
         {
-            return _gitModule.RunGit(arguments);
+            int exitCode;
+            string output = _gitModule.RunGit(arguments, out exitCode);
+
+            return new GitResult(exitCode == 0, output);
         }
     }
 }

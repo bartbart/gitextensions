@@ -12,7 +12,7 @@ namespace GitFlow.UiControls
 
         bool CanExecute { get; }
 
-        List<ICommand> Commands { get; }
+        Command Command { get; }
 
         UserControl UserControl { get; }
 

@@ -1,3 +1,4 @@
+using System;
 using GitFlow.Commands;
 
 namespace GitFlow
@@ -8,14 +9,35 @@ namespace GitFlow
 
         private readonly LogLineHandler _logLineHandler;
 
+        private int Indentation { get; set; }
+
         public Logger(LogLineHandler logLineHandler)
         {
             _logLineHandler = logLineHandler;
+            Indentation = 0;
         }
 
-        public void LogLine(string message)
+        public void LogLine(string action, string message)
         {
-            _logLineHandler(message);
+            string prefix = string.Empty;
+            for (int i = 0; i < Indentation; ++i)
+            {
+                prefix += "  ";
+            }
+
+            string formattedMessage = "[" + action + "]" + prefix + message.Replace(Environment.NewLine, Environment.NewLine + prefix);
+
+            _logLineHandler(formattedMessage);
+        }
+
+        public void IncrementIndentation()
+        {
+            Indentation++;
+        }
+
+        public void DecrementIndentation()
+        {
+            Indentation--;
         }
     }
 }
