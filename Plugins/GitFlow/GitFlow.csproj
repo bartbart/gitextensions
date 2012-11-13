@@ -47,7 +47,7 @@
     <Compile Include="Commands\ILogger.cs" />
     <Compile Include="Commands\Impl\Log.cs" />
     <Compile Include="Commands\Impl\Required.cs" />
-    <Compile Include="Commands\Impl\NotFailed.cs" />
+    <Compile Include="Commands\Impl\CheckAndCommand.cs" />
     <Compile Include="Commands\Impl\Or.cs" />
     <Compile Include="Commands\Impl\IsCleanWorkingTree.cs" />
     <Compile Include="Commands\Impl\GitInit.cs" />

@@ -2,12 +2,6 @@
 {
     class Or : Check
     {
-        public Or(Check check1, Check check2)
-        {
-            Check1 = check1;
-            Check2 = check2;
-        }
-
         public override bool IndentLogging
         {
             get { return true; }
@@ -21,9 +15,9 @@
             }
         }
 
-        private Check Check1 { get; set; }
+        public Check Check1 { get; set; }
 
-        private Check Check2 { get; set; }
+        public Check Check2 { get; set; }
 
         protected override CheckResult RunCheck(IGit git, ILogger logger)
         {

@@ -9,9 +9,23 @@
 
         protected override CheckResult RunCheck(IGit git, ILogger logger)
         {
-            //GitResult result = git.RunCommand("rev-parse --quiet --verify HEAD");
+            GitResult resultHasUnstagedChanges = git.Execute("diff --no-ext-diff --ignore-submodules --quiet --exit-code");
 
-            return CheckResult.False;
+            if (!resultHasUnstagedChanges.Succeeded)
+            {
+                AdditionalLogging = "Working tree contains unstaged changes.";
+                return CheckResult.False;
+            }
+
+            GitResult resultIndexContainsUncommitedChanges = git.Execute("diff-index --cached --quiet --ignore-submodules HEAD --");
+
+            if (!resultIndexContainsUncommitedChanges.Succeeded)
+            {
+                AdditionalLogging = "Index contains uncommited changes.";
+                return CheckResult.False;
+            }
+
+            return CheckResult.True;
         }
     }
 }

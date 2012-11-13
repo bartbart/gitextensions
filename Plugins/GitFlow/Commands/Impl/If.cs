@@ -2,18 +2,11 @@
 {
     class If : Command
     {
-        public If(Check check, Command onTrue, Command onFalse)
-        {
-            Check = check;
-            OnTrue = onTrue;
-            OnFalse = onFalse;
-        }
+        public Check Check { get; set; }
 
-        private Check Check { get; set; }
+        public Command OnTrue { get; set; }
 
-        private Command OnTrue { get; set; }
-
-        private Command OnFalse { get; set; }
+        public Command OnFalse { get; set; }
 
         public override string Description
         {
@@ -22,6 +15,8 @@
 
         protected override bool RunCommand(IGit git, ILogger logger)
         {
+            logger.IncrementIndentation();
+
             CheckResult result = Check.Execute(git, logger);
 
             if (result == CheckResult.Failed)
@@ -31,8 +26,13 @@
 
             if (result == CheckResult.True)
             {
+                logger.DecrementIndentation();
+
                 return OnTrue.Execute(git, logger);
             }
+
+            logger.DecrementIndentation();
+
             return OnFalse.Execute(git, logger);
         }
     }

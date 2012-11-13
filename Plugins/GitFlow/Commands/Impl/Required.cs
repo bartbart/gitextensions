@@ -2,17 +2,12 @@
 {
     class Required : Check
     {
-        public Required(Check theCheck)
-        {
-            TheCheck = theCheck;
-        }
-
         public override bool IndentLogging
         {
             get { return true; }
         }
 
-        private Check TheCheck { get; set; }
+        public Check TheCheck { get; set; }
 
         public override string Description
         {

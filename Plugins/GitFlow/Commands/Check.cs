@@ -11,6 +11,8 @@ namespace GitFlow.Commands
             get { return false; }
         }
 
+        public string AdditionalLogging { set; private get; }
+
         protected abstract CheckResult RunCheck(IGit git, ILogger logger);
 
         public CheckResult Execute(IGit git, ILogger logger)
@@ -22,12 +24,17 @@ namespace GitFlow.Commands
 
             CheckResult result = RunCheck(git, logger);
 
+            string logMessage = string.Format("{0} [{1}]", Description, ToMessage(result));
+            if (AdditionalLogging != null && AdditionalLogging.Length > 0)
+            {
+                logMessage += " - " + AdditionalLogging;
+            }
+            logger.LogLine("Check", logMessage);
+
             if (IndentLogging)
             {
                 logger.DecrementIndentation();
             }
-
-            logger.LogLine("Check", string.Format("[{0}] {1}", ToMessage(result), Description));
 
             return result;
         }
