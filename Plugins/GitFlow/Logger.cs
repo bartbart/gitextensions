@@ -25,11 +25,12 @@ namespace GitFlow
                 prefix += "  ";
             }
 
-            string formattedMessage = "[" + action + "]";
+            string formattedMessage = "[" + action;
             while (formattedMessage.Length < 9)
             {
                 formattedMessage += " ";
             }
+            formattedMessage += "] ";
             formattedMessage += prefix + message.Replace(Environment.NewLine, Environment.NewLine + prefix);
 
             _logLineHandler(formattedMessage);

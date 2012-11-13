@@ -16,24 +16,37 @@
         protected override bool RunCommand(IGit git, ILogger logger)
         {
             logger.IncrementIndentation();
-
             CheckResult result = Check.Execute(git, logger);
+            logger.DecrementIndentation();
 
             if (result == CheckResult.Failed)
             {
                 return false;
             }
 
+            bool actionResult = false;
+
             if (result == CheckResult.True)
             {
-                logger.DecrementIndentation();
+                logger.LogLine("", "Then");
+                logger.LogLine("", "{");
 
-                return OnTrue.Execute(git, logger);
+                logger.IncrementIndentation();
+                actionResult = OnTrue.Execute(git, logger);
+                logger.DecrementIndentation();
+            }
+            else
+            {
+                logger.LogLine("", "Else");
+                logger.LogLine("", "{");
+                logger.IncrementIndentation();
+                actionResult = OnFalse.Execute(git, logger);
+                logger.DecrementIndentation();
             }
 
-            logger.DecrementIndentation();
+            logger.LogLine("", "}");
 
-            return OnFalse.Execute(git, logger);
+            return actionResult;
         }
     }
 }
